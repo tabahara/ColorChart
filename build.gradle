@@ -1,0 +1,12 @@
+apply plugin: 'java'
+apply plugin: 'application'
+mainClassName='com.quinmantha.study.colorchart.ColorCodeGenerator'
+
+
+repositories {
+    jcenter();
+}
+
+dependencies {
+   compile 'org.jsoup:jsoup:1.9.1'
+}
