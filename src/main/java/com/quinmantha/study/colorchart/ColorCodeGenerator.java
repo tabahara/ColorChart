@@ -18,6 +18,23 @@ import java.util.List;
  */
 public class ColorCodeGenerator {
     public static void main(String[] args) throws IOException {
+
+	String http_proxy = System.getenv("http_proxy");
+	if( http_proxy != null ){
+		URL url = new URL(http_proxy);
+        System.setProperty("http.proxyHost", url.getHost());
+		System.setProperty("http.proxyPort", Integer.toString(url.getPort()));
+		System.out.println(String.format("http_proxy = %s : %s", url.getHost(), Integer.toString(url.getPort())));
+    }
+
+    String https_proxy = System.getenv("https_proxy"); 
+	if( https_proxy != null ){
+		URL url = new URL(https_proxy);
+        System.setProperty("https.proxyHost", url.getHost());
+		System.setProperty("https.proxyPort", Integer.toString(url.getPort()));
+		System.out.println(String.format("https_proxy = %s : %s", url.getHost(), Integer.toString(url.getPort())));
+    }
+
 	ColorCodeGenerator o = ColorCodeGenerator.newInstance();
 	final int timeout = 10 * 1000;
 	Document document = Jsoup.parse(new URL("https://material.google.com/style/color.html"), timeout);
